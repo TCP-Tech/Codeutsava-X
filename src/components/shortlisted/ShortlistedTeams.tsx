@@ -44,10 +44,12 @@ function ScrambleGlitchText({
   const [displayText, setDisplayText] = useState(text);
 
   useEffect(() => {
-    if (!isHovered) {
+  if (!isHovered) {
+    queueMicrotask(() => {
       setDisplayText(text);
-      return;
-    }
+    });
+    return;
+  }
 
     const interval = setInterval(() => {
       const scrambled = text
