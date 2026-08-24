@@ -306,31 +306,25 @@ export function GraphAnalytics({
               <div className={styles.chartFrame}>
                 <ResponsiveContainer width="100%" height="100%">
                   <BarChart
-                    key={
-                      hasEnteredViewport
-                        ? 'participation-revealed'
-                        : 'participation-pending'
-                    }
-                    data={chartData}
-                    layout="vertical"
-                    margin={{
-                      top: 7,
-                      right: 14,
-                      bottom: 7,
-                      left: 0,
-                    }}
-                    accessibilityLayer={false}
-                    onMouseMove={(state) => {
-                      const point = state?.activePayload?.[0]
-                        ?.payload as GraphDataPoint | undefined;
+                      key={
+                        hasEnteredViewport
+                            ? 'participation-revealed'
+                            : 'participation-pending'
+                        }
+                      data={chartData}
+                      layout="vertical"
+                      margin={{ top: 7, right: 14, bottom: 7, left: 0 }}
+                      accessibilityLayer={false}
+                      onMouseMove={(state) => {
+                        const point = state?.activeTooltipIndex;
+                        const dataPoint =
+                          typeof point === 'number' ? chartData[point] : undefined;
 
-                      setActiveParticipationLabel(point?.label ?? null);
-                    }}
-                    onMouseLeave={() =>
-                      setActiveParticipationLabel(null)
-                    }
-                    style={{ outline: 'none' }}
-                  >
+                        setActiveParticipationLabel(dataPoint?.label ?? null);
+                      }}
+                      onMouseLeave={() => setActiveParticipationLabel(null)}
+                      style={{ outline: 'none' }}
+                    >
                     <defs>
                       <linearGradient
                         id="participation-bars"
