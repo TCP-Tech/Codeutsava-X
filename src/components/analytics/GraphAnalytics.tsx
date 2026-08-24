@@ -50,16 +50,16 @@ export function GraphAnalytics({ data = DEFAULT_GROWTH_DATA, className = '' }: G
       }
     }, { threshold: 0.28 });
 
-      <div className="relative mx-auto max-w-7xl">
-        <div className="mb-10 flex flex-col gap-6 sm:mb-14 md:flex-row md:items-end md:justify-between">
-          <div className="max-w-2xl">
-            {/* <p className="mb-3 flex items-center gap-2 font-mono text-[10px] tracking-[0.32em] text-cyan-200/80"><Zap className="h-3.5 w-3.5" /> LIVE ARCHIVE / 2016—2024</p> */}
-            <h2 id="analytics-title" data-text="GRAPH AND ANALYTICS." className={`${styles.sponsorHeading} uppercase leading-[.85]`}>GRAPH AND ANALYTICS.</h2>
-          </div>
-          <p className="max-w-sm border-l border-[#ff5fcf]/60 pl-4 font-mono text-xs leading-relaxed text-white/60">Hover or select any signal point to inspect how the Codeutsava universe keeps expanding.</p>
-        </div>
 
   return (
+<div className="relative mx-auto max-w-7xl">
+    <div className="mb-10 flex flex-col gap-6 sm:mb-14 md:flex-row md:items-end md:justify-between">
+        <div className="max-w-2xl">
+            {/* <p className="mb-3 flex items-center gap-2 font-mono text-[10px] tracking-[0.32em] text-cyan-200/80"><Zap className="h-3.5 w-3.5" /> LIVE ARCHIVE / 2016—2024</p> */}
+        <h2 id="analytics-title" data-text="GRAPH AND ANALYTICS." className={`${styles.sponsorHeading} uppercase leading-[.85]`}>GRAPH AND ANALYTICS.</h2>
+        </div>
+        <p className="max-w-sm border-l border-[#ff5fcf]/60 pl-4 font-mono text-xs leading-relaxed text-white/60">Hover or select any signal point to inspect how the Codeutsava universe keeps expanding.</p>
+    </div>
     <section ref={sectionRef} id="analytics" className={`${styles.section} ${className}`} aria-labelledby="analytics-title">
       <div className={styles.gridOverlay} aria-hidden="true" />
       <div className={styles.glow} aria-hidden="true" />
@@ -104,4 +104,5 @@ export function GraphAnalytics({ data = DEFAULT_GROWTH_DATA, className = '' }: G
         </div>
       </div>
     </section>
+</div>
   );
