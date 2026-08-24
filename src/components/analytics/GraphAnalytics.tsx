@@ -320,13 +320,11 @@ export function GraphAnalytics({
                       left: 0,
                     }}
                     accessibilityLayer={false}
-                    onMouseMove={(state: any) => {
+                    onMouseMove={(state) => {
                       const point = state?.activePayload?.[0]
                         ?.payload as GraphDataPoint | undefined;
 
-                      setActiveParticipationLabel(
-                        point?.label ?? null
-                      );
+                      setActiveParticipationLabel(point?.label ?? null);
                     }}
                     onMouseLeave={() =>
                       setActiveParticipationLabel(null)
