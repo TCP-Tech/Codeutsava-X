@@ -105,4 +105,3 @@ export function GraphAnalytics({ data = DEFAULT_GROWTH_DATA, className = '' }: G
       </div>
     </section>
   );
-}
