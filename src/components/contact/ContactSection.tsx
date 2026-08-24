@@ -21,8 +21,9 @@ export function ContactSection() {
   const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
-    setIsMounted(true);
-  }, []);
+  const timer = setTimeout(() => setIsMounted(true), 0);
+  return () => clearTimeout(timer);
+}, []);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData(prev => ({
