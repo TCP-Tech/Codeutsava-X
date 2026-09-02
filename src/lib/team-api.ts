@@ -1,4 +1,4 @@
-﻿/**
+/**
  * team-api.ts
  * Smart Live/Hybrid Django Backend Team Data Provider:
  * - Live-fetches from https://codeutsava.nitrr.ac.in/server/team/2026/
@@ -288,6 +288,7 @@ export async function fetchTeamMembers(year = 2026): Promise<TeamMember[]> {
     const res = await fetch(url, {
       ...(isDev ? { cache: 'no-store' } : { next: { revalidate: 60 } }),
       headers: { Accept: 'application/json' },
+      signal: AbortSignal.timeout(2000),
     });
 
     if (res.ok) {
@@ -297,7 +298,7 @@ export async function fetchTeamMembers(year = 2026): Promise<TeamMember[]> {
       }
     }
   } catch (err) {
-    console.warn('[team-api] Django live fetch failed, using fallback static data:', err);
+    console.warn('[team-api] Django live fetch failed or timed out, using fallback static data:', err);
   }
 
   // Fallback to static 2026 dataset
