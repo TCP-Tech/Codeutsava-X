@@ -4,8 +4,11 @@ import styles from "./SponsorSection.module.css";
 const sponsors = [
   { name: "CPTCL", src: "/sponsors/cptcl.png" },
   { name: "GKTMT", src: "/sponsors/gktmt.png" },
+  { name: "elevenlabs", src: "/sponsors/elevenlabs.png" },
+  { name: "Mastra", src: "/sponsors/mastra_logo.png" },
   { name: "LIC", src: "/sponsors/lic.png" },
   { name: "algo-university", src: "/sponsors/algo-university.png" },
+
 ];
 
 export function SponsorSection() {

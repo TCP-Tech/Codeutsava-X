@@ -118,7 +118,7 @@
 }
 
 .eyebrow {
-  margin: 0 0 clamp(8px, 1.4vh, 18px);
+  margin: 0 0 clamp(32px, 5vh, 64px);
   color: #fff3dc;
   font-size: clamp(24px, 3.2vw, 48px);
   font-weight: 900;
