@@ -13,9 +13,9 @@ class CyberSoundtrackEngine {
   private getAudio(): HTMLAudioElement | null {
     if (typeof window === 'undefined') return null;
     if (!this.audio) {
-      this.audio = new Audio('/bg-music.mp3');
+      this.audio = new Audio('/bgm.mpeg');
       this.audio.loop = true;
-      this.audio.volume = 0.5; // Set volume to 50%
+      this.audio.volume = 0.2; // Set volume to 20%
     }
     return this.audio;
   }
