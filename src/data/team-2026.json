@@ -57,32 +57,6 @@
     "status": "published"
   },
   {
-    "id": "4",
-    "name": "Adya Singh",
-    "role": "Design",
-    "group": "head-coordinator",
-    "team": "TCP // Design",
-    "imageSrc": "https://lh3.googleusercontent.com/d/12DQNXOGTFM97DOHCXiJu4-AvTyifE8V3=w600",
-    "socialLinks": [
-      {
-        "platform": "linkedin",
-        "href": "https://www.linkedin.com/in/adya-singh-091126273/",
-        "label": "LinkedIn"
-      },
-      {
-        "platform": "instagram",
-        "href": "https://www.instagram.com/aaddyaaa_/",
-        "label": "Instagram"
-      },
-      {
-        "platform": "github",
-        "href": "https://github.com/aaddyaaa",
-        "label": "GitHub"
-      }
-    ],
-    "status": "published"
-  },
-  {
     "id": "5",
     "name": "Harshit Jhariya",
     "role": "Design",
