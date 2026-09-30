@@ -33,10 +33,6 @@ export interface ParsedShortlistedTeam {
   members: string[];
 }
 
-const SHORTLISTED_API_URL =
-  process.env.NEXT_PUBLIC_SHORTLISTED_API_URL ??
-  'https://codeutsava.nitrr.ac.in/server/shortlistedTeams/2026';
-
 function cleanMemberName(name: unknown): string | null {
   if (typeof name !== 'string') return null;
   const trimmed = name.trim();
@@ -109,14 +105,11 @@ export const FALLBACK_SHORTLISTED_TEAMS: ParsedShortlistedTeam[] = (
 ).map((t, idx) => parseShortlistedTeam(t, idx));
 
 export async function fetchShortlistedTeams(year = 2026): Promise<ParsedShortlistedTeam[]> {
-  const url = SHORTLISTED_API_URL.replace(/2026/, String(year));
-
   try {
-    const isDev = process.env.NODE_ENV === 'development';
-    const res = await fetch(url, {
-      ...(isDev ? { cache: 'no-store' } : { next: { revalidate: 60 } }),
+    const res = await fetch(`/api/shortlisted-teams?year=${encodeURIComponent(String(year))}`, {
+      cache: 'no-store',
       headers: { Accept: 'application/json' },
-      signal: AbortSignal.timeout(2000),
+      signal: AbortSignal.timeout(10000),
     });
 
     if (res.ok) {
