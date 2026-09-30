@@ -15,7 +15,7 @@ class CyberSoundtrackEngine {
     if (!this.audio) {
       this.audio = new Audio('/trimmed8.mp3');
       this.audio.loop = true;
-      this.audio.volume = 0.2; // Set volume to 20%
+      this.audio.volume = 0.5; // Set volume to 50%
     }
     return this.audio;
   }

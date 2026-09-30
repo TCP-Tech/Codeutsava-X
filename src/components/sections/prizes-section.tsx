@@ -1,10 +1,6 @@
 import sponsorStyles from "@/components/sponsor-section/SponsorSection.module.css";
 import styles from "./prizes-section.module.css";
 
-const sharedRewards = [
-  "To be announced",
-] as const;
-
 const prizeCards = [
   {
     signal: "01 // GOLD",
@@ -12,7 +8,10 @@ const prizeCards = [
     title: "Winner's",
     award:
       "A monetary prize of Rs. 50,000 and 2.5 lakhs worth of prizes will be presented to the winning team.",
-    rewards: sharedRewards,
+    rewards: [
+      "InterviewBuddy: High-value credits to level up their interview game (AI Interview Vouchers worth ₹550)",
+      "Each team member receives 3 months of ElevenLabs Pro tier ($297 value/team member, 600k credits/mo)",
+    ],
   },
   {
     signal: "02 // SILVER",
@@ -20,7 +19,9 @@ const prizeCards = [
     title: "Runner-Up's",
     award:
       "A monetary prize of Rs. 40,000 and 2.4 lakhs worth of prizes will be presented to the 1st runner ups.",
-    rewards: sharedRewards,
+    rewards: [
+      "InterviewBuddy: Moderate credits to practice and improve (90% AI Interview Discount Voucher)",
+    ],
   },
   {
     signal: "03 // BRONZE",
@@ -28,7 +29,9 @@ const prizeCards = [
     title: "2nd Runner-Up's",
     award:
       "A monetary prize of Rs. 30,000 and 2.4 lakhs worth of prizes will be presented to the 2nd runner ups.",
-    rewards: sharedRewards,
+    rewards: [
+      "InterviewBuddy: Moderate credits to practice and improve (90% AI Interview Discount Voucher)",
+    ],
   },
   {
     signal: "04 // DOMAIN",
@@ -36,17 +39,24 @@ const prizeCards = [
     title: "Problem Statement Winner's",
     award:
       "The category-wise winning teams will be awarded 1.95 lakhs worth of prizes in total, with Rs. 15,000 in cash to each team.",
-    rewards: [
-      "To be announced",
-    ],
+    rewards: [],
   },
   {
-    signal: "05 // ALL ACCESS",
+    signal: "05 // ELEVENLABS",
+    rank: "◈",
+    title: "Best Project Built with ElevenLabs",
+    award:
+      "Each team member receives 3 months of ElevenLabs Scale tier ($897 value/team member, 1.8M credits/mo).",
+    rewards: [],
+  },
+  {
+    signal: "06 // ALL ACCESS",
     rank: "✦",
     title: "For All Participants!",
     award: "Every participant unlocks the following partner perks and rewards.",
     rewards: [
-      "To be announced",
+      "InterviewBuddy: Discount coupons to get started (10% Discount Coupon for Expert-Driven Sessions)",
+      "1 month free of ElevenLabs Creator tier (normally $22/month, 131k credits)",
     ],
   },
 ] as const;
@@ -81,7 +91,7 @@ export function PrizesSection() {
               <div className={styles.cardScanline} aria-hidden="true" />
               <div className={styles.cardMeta}>
                 <span>{prize.signal}</span>
-                <span>{String(index + 1).padStart(2, "0")} / 05</span>
+                <span>{String(index + 1).padStart(2, "0")} / 06</span>
               </div>
 
               <span className={styles.rank} aria-hidden="true">
@@ -93,7 +103,7 @@ export function PrizesSection() {
               {prize.rewards.length > 0 && (
                 <ul>
                   {prize.rewards.map((reward) => (
-                    <li className="text-lg" key={reward}>{reward}</li>
+                    <li className="text-sm" key={reward}>{reward}</li>
                   ))}
                 </ul>
               )}

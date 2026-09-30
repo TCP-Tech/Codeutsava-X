@@ -10,6 +10,9 @@ const sponsors = [
   { name: "algo-university", src: "/sponsors/algo-university.png" },
   { name: "SBI", src: "/sponsors/sbi.jpeg" },
   { name: "NECO", src: "/sponsors/neco.jpeg" },
+  { name: "Devfolio", src: "/sponsors/devfolio.png" },
+  { name: "interviewbuddy", src: "/sponsors/Interviewbuddy.png" },
+  
 ];
 
 export function SponsorSection() {

@@ -293,7 +293,7 @@ export const TimelineRoad: React.FC = () => {
                   </h2>
                 </div>
 
-                <div className="pointer-events-auto flex items-center gap-2 sm:gap-3 pr-12">
+                <div className="pointer-events-auto flex items-center gap-2 sm:gap-3 fixed bottom-6 left-6 z-50 sm:static sm:z-auto sm:bottom-auto sm:left-auto sm:pr-12">
                   <button
                     type="button"
                     onClick={handleSkipSection}

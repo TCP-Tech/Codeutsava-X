@@ -22,8 +22,13 @@
   opacity: 0.7;
 }
 
-.section::before { top: 16px; }
-.section::after { bottom: 16px; }
+.section::before {
+  top: 16px;
+}
+
+.section::after {
+  bottom: 16px;
+}
 
 /* HEADER AREA */
 .heading {
@@ -75,8 +80,17 @@
 }
 
 @keyframes pulseDot {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.4; transform: scale(1.3); }
+
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 0.4;
+    transform: scale(1.3);
+  }
 }
 
 /* MASTER CONTROLS BAR */
@@ -168,6 +182,29 @@
   gap: clamp(14px, 1.8vw, 24px);
 }
 
+.trackSection {
+  max-width: 1360px;
+  margin: clamp(36px, 5vw, 64px) auto 0;
+}
+
+.trackHeading {
+  margin: 0 0 20px;
+  color: var(--cream);
+  font-family: var(--font-display);
+  font-size: clamp(18px, 2.2vw, 26px);
+  font-weight: 700;
+  text-align: center;
+  text-shadow: 3px 0 rgba(153, 41, 234, 0.65), -2px 0 rgba(255, 95, 207, 0.4);
+}
+
+.emptyTrack {
+  margin: 0;
+  color: rgba(250, 235, 146, 0.68);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  text-align: center;
+}
+
 /* RECTANGULAR COMPACT CARD */
 .slotCard {
   position: relative;
@@ -210,6 +247,7 @@
 
 /* DYNAMIC HOVER GLITCH ON DESKTOP */
 @media (hover: hover) {
+
   .slotCard:hover,
   .slotCardHovered {
     animation:
@@ -247,6 +285,7 @@
       4px 0 #9929ea,
       inset 0 0 35px rgba(255, 95, 207, 0.35);
   }
+
   25% {
     border-color: #faeb92;
     box-shadow:
@@ -254,6 +293,7 @@
       -4px 0 #ff5fcf,
       inset 0 0 35px rgba(250, 235, 146, 0.35);
   }
+
   50% {
     border-color: #9929ea;
     box-shadow:
@@ -261,6 +301,7 @@
       5px 0 #ffffff,
       inset 0 0 35px rgba(153, 41, 234, 0.45);
   }
+
   75% {
     border-color: #ffffff;
     box-shadow:
@@ -268,6 +309,7 @@
       -5px 0 #9929ea,
       inset 0 0 35px rgba(255, 255, 255, 0.3);
   }
+
   100% {
     border-color: #ff5fcf;
     box-shadow:
@@ -278,18 +320,45 @@
 }
 
 @keyframes cardGlitchJolt {
-  0% { transform: skewX(-6deg) translate(0, -6px); }
-  25% { transform: skewX(-7.5deg) translate(-3px, -5px); }
-  50% { transform: skewX(-4.5deg) translate(3px, -8px); }
-  75% { transform: skewX(-6.8deg) translate(-2px, -6px); }
-  100% { transform: skewX(-6deg) translate(0, -6px); }
+  0% {
+    transform: skewX(-6deg) translate(0, -6px);
+  }
+
+  25% {
+    transform: skewX(-7.5deg) translate(-3px, -5px);
+  }
+
+  50% {
+    transform: skewX(-4.5deg) translate(3px, -8px);
+  }
+
+  75% {
+    transform: skewX(-6.8deg) translate(-2px, -6px);
+  }
+
+  100% {
+    transform: skewX(-6deg) translate(0, -6px);
+  }
 }
 
 @keyframes cardBeam {
-  0% { transform: skewX(-15deg) translateX(-60%); opacity: 0; }
-  35% { opacity: 0.85; }
-  70% { opacity: 0.85; }
-  100% { transform: skewX(-15deg) translateX(320%); opacity: 0; }
+  0% {
+    transform: skewX(-15deg) translateX(-60%);
+    opacity: 0;
+  }
+
+  35% {
+    opacity: 0.85;
+  }
+
+  70% {
+    opacity: 0.85;
+  }
+
+  100% {
+    transform: skewX(-15deg) translateX(320%);
+    opacity: 0;
+  }
 }
 
 .cardInner {
@@ -314,10 +383,21 @@
 }
 
 @keyframes iconJitter {
-  0% { transform: translate(0, 0) scale(1.06); }
-  33% { transform: translate(-2px, 1px) scale(1.09) rotate(-2deg); }
-  66% { transform: translate(2px, -1px) scale(1.05) rotate(2deg); }
-  100% { transform: translate(0, 0) scale(1.06); }
+  0% {
+    transform: translate(0, 0) scale(1.06);
+  }
+
+  33% {
+    transform: translate(-2px, 1px) scale(1.09) rotate(-2deg);
+  }
+
+  66% {
+    transform: translate(2px, -1px) scale(1.05) rotate(2deg);
+  }
+
+  100% {
+    transform: translate(0, 0) scale(1.06);
+  }
 }
 
 .unopenedLabel {
@@ -342,20 +422,45 @@
   animation: teamReveal 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
+.teamContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+}
+
+.slotBadge {
+  font-family: var(--font-mono);
+  font-size: 8.5px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  color: var(--pink);
+  text-shadow: 0 0 8px rgba(255, 95, 207, 0.6);
+  text-transform: uppercase;
+}
+
 @keyframes teamReveal {
-  0% { opacity: 0; transform: scale(0.88); }
-  100% { opacity: 1; transform: scale(1); }
+  0% {
+    opacity: 0;
+    transform: scale(0.88);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 .teamName {
   margin: 0;
   font-family: var(--font-mono);
-  font-size: clamp(16px, 1.8vw, 22px);
+  font-size: clamp(15px, 1.7vw, 21px);
   font-weight: 800;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   color: #faeb92;
-  text-shadow: 0 0 12px rgba(250, 235, 146, 0.35);
+  text-shadow: 0 0 12px rgba(250, 235, 146, 0.45);
   word-break: break-word;
   line-height: 1.25;
   transition: color 0.15s ease, text-shadow 0.15s ease;
@@ -380,10 +485,10 @@
   box-shadow: 0 0 6px var(--pink);
 }
 
-/* 3 COLUMNS IN A ROW FOR ANDROID & MOBILE (< 768px) */
+/* 2x2 BALANCED GRID FOR ANDROID & MOBILE (< 768px) */
 @media (max-width: 768px) {
   .section {
-    padding: clamp(32px, 5vw, 54px) clamp(22px, 6vw, 36px);
+    padding: clamp(32px, 5vw, 54px) clamp(20px, 5vw, 36px);
   }
 
   .heading {
@@ -392,15 +497,15 @@
   }
 
   .slotsGrid {
-    grid-template-columns: repeat(3, 1fr);
-    gap: clamp(8px, 2.5vw, 12px);
+    grid-template-columns: repeat(2, 1fr);
+    gap: clamp(10px, 3vw, 14px);
     width: 100%;
   }
 
   .slotCard {
     transform: skewX(-6deg);
-    height: 76px;
-    padding: 6px 3px;
+    height: 84px;
+    padding: 8px 6px;
     box-shadow: inset 0 0 14px rgba(153, 41, 234, 0.15), 0 4px 10px rgba(0, 0, 0, 0.5);
   }
 
@@ -412,18 +517,14 @@
     transform: skewX(6deg);
   }
 
-  .unopenedView {
-    gap: 2px;
-  }
-
-  .unopenedLabel {
-    font-size: 6.8px;
-    letter-spacing: 0.03em;
+  .slotBadge {
+    font-size: 7.5px;
+    letter-spacing: 0.12em;
   }
 
   .teamName {
-    font-size: clamp(9.5px, 2.4vw, 11.5px);
-    letter-spacing: 0.02em;
+    font-size: clamp(11.5px, 3.2vw, 14px);
+    letter-spacing: 0.05em;
     line-height: 1.15;
   }
 
@@ -442,30 +543,30 @@
 
 @media (max-width: 480px) {
   .section {
-    padding: 28px 24px;
+    padding: 28px 16px;
   }
 
   .slotsGrid {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 8px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
   }
 
   .slotCard {
     transform: skewX(-6deg);
-    height: 72px;
-    padding: 4px 2px;
+    height: 80px;
+    padding: 6px 4px;
   }
 
   .cardInner {
     transform: skewX(6deg);
   }
 
-  .unopenedLabel {
-    font-size: 6.2px;
-    letter-spacing: 0.01em;
+  .slotBadge {
+    font-size: 7px;
+    letter-spacing: 0.1em;
   }
 
   .teamName {
-    font-size: 10px;
+    font-size: clamp(11px, 3.4vw, 13px);
   }
 }

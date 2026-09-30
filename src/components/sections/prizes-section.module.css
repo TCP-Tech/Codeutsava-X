@@ -188,8 +188,8 @@
   border-top: 1px solid rgba(250, 235, 146, 0.15);
   border-bottom: 1px solid rgba(250, 235, 146, 0.15);
   color: rgb(253, 255, 231);
-  font-size: clamp(17px, 0.72vw, 16px);
-  font-weight: 700;
+  font-size: 14px;
+  font-weight: 500;
   line-height: 1.4;
 }
 
@@ -200,7 +200,7 @@
   margin: 6px 0 0;
   padding: 0;
   color: rgba(250, 234, 146, 0.842);
-  font-size: clamp(17px, 0.62vw, 14px);
+  font-size: 13px;
   line-height: 1.22;
   list-style: none;
 }
@@ -257,8 +257,8 @@
   .transmissionHeader strong { font-size: 18px; }
   .card { min-height: 0; padding: 10px 12px 12px; width:80%; justify-self: center;}
   .card h3 { font-size: clamp(16px, 5.5vw, 21px); }
-  .award { font-size: 14px; line-height: 1.3; }
-  .card ul { font-size: 12px; }
+  .award { font-size: 12px; line-height: 1.3; }
+  .card ul { font-size: 11px; }
   .card:last-child { padding-block: 10px 12px; }
   .card:last-child .rank { margin-top: 5px; font-size: 16px; }
   .card:last-child ul { gap: 2px; font-size: 7px; line-height: 1.2; }

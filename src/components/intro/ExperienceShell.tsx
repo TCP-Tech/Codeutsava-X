@@ -225,6 +225,7 @@ export function ExperienceShell({ children }: { children: ReactNode }) {
                 Reserved.
               </p>
             </section>
+
             <div className={styles.glitchBars} aria-hidden="true">
               {Array.from({ length: 9 }, (_, index) => (
                 <span
