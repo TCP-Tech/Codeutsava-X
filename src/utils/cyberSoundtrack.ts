@@ -13,7 +13,7 @@ class CyberSoundtrackEngine {
   private getAudio(): HTMLAudioElement | null {
     if (typeof window === 'undefined') return null;
     if (!this.audio) {
-      this.audio = new Audio('/bgm.mpeg');
+      this.audio = new Audio('/trimmed8.mp3');
       this.audio.loop = true;
       this.audio.volume = 0.5; // Set volume to 50%
     }

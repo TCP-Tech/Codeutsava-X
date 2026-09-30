@@ -39,6 +39,44 @@ export function ShortlistedTeams() {
     };
   }, []);
 
+  const openInnovationTeams = teams.filter(
+    (team) => team.openInnovation
+  );
+  const otherTeams = teams.filter(
+    (team) => !team.openInnovation
+  );
+  const renderTeamCard = (team: ParsedShortlistedTeam) => {
+    const isHovered = !isTouchDevice && hoveredSlot === team.id;
+
+    return (
+      <div
+        key={team.id}
+        className={`${styles.slotCard} ${isHovered ? styles.slotCardHovered : ''}`}
+        onMouseEnter={() => !isTouchDevice && setHoveredSlot(team.id)}
+        onMouseLeave={() => setHoveredSlot(null)}
+        onClick={() => setSelectedTeam(team)}
+        role="button"
+        tabIndex={0}
+        onKeyDown={(e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            setSelectedTeam(team);
+          }
+        }}
+        aria-label={`View dossier for ${team.teamName}`}
+      >
+        <div className={styles.cardScanline} aria-hidden="true" />
+        <span className={styles.cardCorner} aria-hidden="true" />
+
+        <div className={styles.cardInner}>
+          <div className={styles.openedView}>
+            <h3 className={styles.teamName}>{team.teamName}</h3>
+          </div>
+        </div>
+      </div>
+    );
+  };
+
   return (
     <section className={styles.section} id="shortlisted-teams" aria-labelledby="shortlist-title">
       {/* Heading */}
@@ -64,41 +102,19 @@ export function ShortlistedTeams() {
         </div>
       </div>
 
-      {/* Grid of Rectangular Cards displaying Only Clean Team Names */}
       <div className={styles.slotsGrid}>
-        {teams.map((team) => {
-          const isHovered = !isTouchDevice && hoveredSlot === team.id;
+        {otherTeams.map(renderTeamCard)}
+      </div>
 
-          return (
-            <div
-              key={team.id}
-              className={`${styles.slotCard} ${isHovered ? styles.slotCardHovered : ''}`}
-              onMouseEnter={() => !isTouchDevice && setHoveredSlot(team.id)}
-              onMouseLeave={() => setHoveredSlot(null)}
-              onClick={() => setSelectedTeam(team)}
-              role="button"
-              tabIndex={0}
-              onKeyDown={(e) => {
-                if (e.key === 'Enter' || e.key === ' ') {
-                  e.preventDefault();
-                  setSelectedTeam(team);
-                }
-              }}
-              aria-label={`View dossier for ${team.teamName}`}
-            >
-              <div className={styles.cardScanline} aria-hidden="true" />
-              <span className={styles.cardCorner} aria-hidden="true" />
-
-              <div className={styles.cardInner}>
-                <div className={styles.openedView}>
-                  <h3 className={styles.teamName}>
-                    {team.teamName}
-                  </h3>
-                </div>
-              </div>
-            </div>
-          );
-        })}
+      <div className={styles.trackSection}>
+        <h3 className={styles.trackHeading}>OPEN INNOVATION</h3>
+        {openInnovationTeams.length > 0 ? (
+          <div className={styles.slotsGrid}>
+            {openInnovationTeams.map(renderTeamCard)}
+          </div>
+        ) : (
+          <p className={styles.emptyTrack}>No teams listed in this track yet.</p>
+        )}
       </div>
 
       {/* Glitchy Windows XP Title Box Modal */}

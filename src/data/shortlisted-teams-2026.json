@@ -12,6 +12,7 @@
     "id": 2,
     "team_name": "BYTE_FORCE",
     "college": "IIT Kharagpur",
+    "open innovation": true,
     "leader_name": "Aarav Sharma",
     "member2": "Rohan Gupta",
     "member3": "Sneha Patel",

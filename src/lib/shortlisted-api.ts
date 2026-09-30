@@ -8,6 +8,9 @@ export interface RawShortlistedTeam {
   college?: string;
   institution?: string;
   track?: string;
+  "open innovation"?: boolean;
+  open_innovation?: boolean;
+  openInnovation?: boolean;
   leader_name?: string;
   team_leader?: string;
   leader?: string;
@@ -26,6 +29,7 @@ export interface ParsedShortlistedTeam {
   id: number | string;
   teamName: string;
   college: string;
+  openInnovation: boolean;
   members: string[];
 }
 
@@ -60,7 +64,6 @@ export function parseShortlistedTeam(raw: RawShortlistedTeam, index: number): Pa
   const college =
     raw.college?.trim() ||
     raw.institution?.trim() ||
-    raw.track?.trim() ||
     'NIT Raipur';
 
   const memberList: string[] = [];
@@ -93,6 +96,10 @@ export function parseShortlistedTeam(raw: RawShortlistedTeam, index: number): Pa
     id: raw.id ?? index + 1,
     teamName,
     college,
+    openInnovation:
+      raw['open innovation'] === true ||
+      raw.open_innovation === true ||
+      raw.openInnovation === true,
     members: memberList.length > 0 ? memberList : ['Member 1', 'Member 2'],
   };
 }
@@ -117,8 +124,8 @@ export async function fetchShortlistedTeams(year = 2026): Promise<ParsedShortlis
       const rawList = Array.isArray(json.data)
         ? json.data
         : Array.isArray(json)
-        ? json
-        : null;
+          ? json
+          : null;
 
       if (rawList && rawList.length > 0) {
         return rawList.map((t: RawShortlistedTeam, idx: number) =>
