@@ -8,9 +8,11 @@ const sponsors = [
   { name: "Mastra", src: "/sponsors/mastra_logo.png" },
   { name: "LIC", src: "/sponsors/lic.png" },
   { name: "algo-university", src: "/sponsors/algo-university.png" },
+  { name: "SBI", src: "/sponsors/sbi.jpeg" },
+  { name: "NECO", src: "/sponsors/neco.jpeg" },
   { name: "Devfolio", src: "/sponsors/devfolio.png" },
   { name: "interviewbuddy", src: "/sponsors/Interviewbuddy.png" },
-  { name: "dip-inn", src: "/sponsors/dip-inn.png" }
+  
 ];
 
 export function SponsorSection() {

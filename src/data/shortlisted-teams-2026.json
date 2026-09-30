@@ -1,0 +1,39 @@
+[
+  {
+    "id": 1,
+    "team_name": "WiFi & Chill",
+    "college": "NIT Raipur",
+    "leader_name": "Vedant Dubey",
+    "member2": "Prince Kumar",
+    "member3": "Devesh Agarwal",
+    "member4": "Hetharth Sachdeva"
+  },
+  {
+    "id": 2,
+    "team_name": "BYTE_FORCE",
+    "college": "IIT Kharagpur",
+    "open innovation": true,
+    "leader_name": "Aarav Sharma",
+    "member2": "Rohan Gupta",
+    "member3": "Sneha Patel",
+    "member4": "Aditya Verma"
+  },
+  {
+    "id": 3,
+    "team_name": "CYBER_PULSE",
+    "college": "IIIT Hyderabad",
+    "leader_name": "Tanmay Deshmukh",
+    "member2": "Ananya Joshi",
+    "member3": "Kunal Roy",
+    "member4": null
+  },
+  {
+    "id": 4,
+    "team_name": "NEO_SYNTAX",
+    "college": "BITS Pilani",
+    "leader_name": "Vikramaditya Rao",
+    "member2": "Ishita Sen",
+    "member3": null,
+    "member4": null
+  }
+]
