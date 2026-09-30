@@ -1,66 +1,29 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
-import { Lock } from 'lucide-react';
-import { CyberLootboxIcon } from './CyberLootboxIcon';
+import { CheckCircle2 } from 'lucide-react';
+import {
+  fetchShortlistedTeams,
+  FALLBACK_SHORTLISTED_TEAMS,
+  type ParsedShortlistedTeam,
+} from '@/lib/shortlisted-api';
+import { ShortlistedTeamModal } from './ShortlistedTeamModal';
 import styles from './ShortlistedTeams.module.css';
 
-interface ShortlistedSlot {
-  id: number;
-}
-
-const SHORTLISTED_SLOTS: ShortlistedSlot[] = [
-  { id: 1 },
-  { id: 2 },
-  { id: 3 },
-  { id: 4 },
-];
-
-const GLITCH_GLYPHS = '!@#$%^&*<>[]{}|~_+?01X=/\\';
-
-function ScrambleGlitchText({
-  text,
-  isHovered,
-  className
-}: {
-  text: string;
-  isHovered: boolean;
-  className?: string;
-}) {
-  const [displayText, setDisplayText] = useState(text);
-
-  useEffect(() => {
-    if (!isHovered) {
-      const timeoutId = setTimeout(() => setDisplayText(text), 0);
-      return () => clearTimeout(timeoutId);
-    }
-
-    const interval = setInterval(() => {
-      const scrambled = text
-        .split('')
-        .map((char) => {
-          if (char === ' ' || char === '&' || char === '_' || char === '[' || char === ']') return char;
-          if (Math.random() < 0.48) {
-            return GLITCH_GLYPHS[Math.floor(Math.random() * GLITCH_GLYPHS.length)];
-          }
-          return char;
-        })
-        .join('');
-      setDisplayText(scrambled);
-    }, 45);
-
-    return () => clearInterval(interval);
-  }, [isHovered, text]);
-
-  return <span className={className}>{isHovered ? displayText : text}</span>;
-}
-
 export function ShortlistedTeams() {
-  const [hoveredSlot, setHoveredSlot] = useState<number | null>(null);
+  const [teams, setTeams] = useState<ParsedShortlistedTeam[]>(FALLBACK_SHORTLISTED_TEAMS);
+  const [selectedTeam, setSelectedTeam] = useState<ParsedShortlistedTeam | null>(null);
+  const [hoveredSlot, setHoveredSlot] = useState<string | number | null>(null);
   const [isTouchDevice, setIsTouchDevice] = useState(false);
 
   useEffect(() => {
+    let isMounted = true;
+    fetchShortlistedTeams().then((data) => {
+      if (isMounted && data && data.length > 0) {
+        setTeams(data);
+      }
+    });
+
     const checkTouch = () => {
       setIsTouchDevice(
         'ontouchstart' in window ||
@@ -70,7 +33,10 @@ export function ShortlistedTeams() {
     };
     checkTouch();
     window.addEventListener('resize', checkTouch);
-    return () => window.removeEventListener('resize', checkTouch);
+    return () => {
+      isMounted = false;
+      window.removeEventListener('resize', checkTouch);
+    };
   }, []);
 
   return (
@@ -84,59 +50,62 @@ export function ShortlistedTeams() {
         <h2 id="shortlist-title">TEAMS SHORTLISTED</h2>
       </div>
 
-      {/* Master Controls Bar - Locked State */}
+      {/* Master Controls Bar - Decrypted State */}
       <div className={styles.controlsBar}>
         <div className={styles.statusIndicator}>
-          <span>TRANSMISSION // LOCKED</span>
+          <span>TRANSMISSION // DECRYPTED</span>
         </div>
 
         <div className={styles.btnGroup}>
           <div className={styles.lockedBadge}>
-            <Lock size={11} className={styles.lockIcon} />
-            <span>REVEALING SOON</span>
+            <CheckCircle2 size={12} className={styles.lockIcon} />
+            <span>LIVE</span>
           </div>
         </div>
       </div>
 
-      {/* Grid of Rectangular Lootbox Cards (Totally Locked) */}
+      {/* Grid of Rectangular Cards displaying Only Clean Team Names */}
       <div className={styles.slotsGrid}>
-        {SHORTLISTED_SLOTS.map((slot) => {
-          const isHovered = !isTouchDevice && hoveredSlot === slot.id;
+        {teams.map((team) => {
+          const isHovered = !isTouchDevice && hoveredSlot === team.id;
 
           return (
             <div
-              key={slot.id}
-              className={`${styles.slotCard} ${styles.slotCardLocked} ${isHovered ? styles.slotCardHovered : ''}`}
-              onMouseEnter={() => !isTouchDevice && setHoveredSlot(slot.id)}
+              key={team.id}
+              className={`${styles.slotCard} ${isHovered ? styles.slotCardHovered : ''}`}
+              onMouseEnter={() => !isTouchDevice && setHoveredSlot(team.id)}
               onMouseLeave={() => setHoveredSlot(null)}
-              aria-label={`Slot ${slot.id}: Encrypted Cyber Vault`}
+              onClick={() => setSelectedTeam(team)}
+              role="button"
+              tabIndex={0}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault();
+                  setSelectedTeam(team);
+                }
+              }}
+              aria-label={`View dossier for ${team.teamName}`}
             >
               <div className={styles.cardScanline} aria-hidden="true" />
               <span className={styles.cardCorner} aria-hidden="true" />
 
               <div className={styles.cardInner}>
-                <motion.div
-                  className={styles.unopenedView}
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ duration: 0.2 }}
-                >
-                  <CyberLootboxIcon
-                    isOpen={false}
-                    isOpening={false}
-                    isHovered={isHovered}
-                  />
-                  <ScrambleGlitchText
-                    text="[ LOCKED ]"
-                    isHovered={isHovered}
-                    className={styles.unopenedLabel}
-                  />
-                </motion.div>
+                <div className={styles.openedView}>
+                  <h3 className={styles.teamName}>
+                    {team.teamName}
+                  </h3>
+                </div>
               </div>
             </div>
           );
         })}
       </div>
+
+      {/* Glitchy Windows XP Title Box Modal */}
+      <ShortlistedTeamModal
+        team={selectedTeam}
+        onClose={() => setSelectedTeam(null)}
+      />
     </section>
   );
 }
