@@ -1,12 +1,14 @@
-name: CI Check (dev)
+name: CI Check
 
 on:
     push:
         branches:
             - dev
+            - main
     pull_request:
         branches:
             - dev
+            - main
 
 jobs:
     check:
@@ -32,5 +34,5 @@ jobs:
               run: pnpm install --frozen-lockfile
 
             - name: Run Quality Check
-              # This will run format, lint, typecheck, and build based on your package.json
+              # Lint, countdown tests, TypeScript, and production build.
               run: pnpm check

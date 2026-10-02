@@ -1,5 +1,6 @@
 .timerWrapper {
-  display: flex;
+  display: inline-flex;
+  max-width: calc(100% - 20px);
   align-items: center;
   justify-content: center;
   gap: clamp(16px, 3vw, 32px);
@@ -29,6 +30,7 @@
   font-family: var(--font-identity);
   font-size: clamp(64px, 10vw, 140px);
   font-weight: 700;
+  font-variant-numeric: tabular-nums;
   color: #faeb92;
   line-height: 1;
   text-shadow: 4px 4px 0 rgba(153, 41, 234, 0.8), -2px -2px 0 rgba(255, 95, 207, 0.5);
@@ -90,4 +92,68 @@
 @keyframes pulse {
   0% { opacity: 0.3; text-shadow: none; }
   100% { opacity: 1; text-shadow: 0 0 10px #ff5fcf; }
+}
+
+.countdown {
+  width: 100%;
+  color: var(--paper);
+  text-align: center;
+}
+
+.status,
+.demoNotice {
+  font-family: "Pixelify Sans", var(--font-screen);
+  font-size: clamp(16px, 1.6vw, 20px);
+  letter-spacing: 0.085em;
+  text-transform: uppercase;
+}
+
+.status { margin: 0; }
+.demoNotice { margin: 0 0 20px; color: var(--acid); }
+
+.hint,
+.schedule,
+.error p {
+  margin: 24px auto 0;
+  max-width: 65ch;
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--paper);
+}
+
+.startButton { margin-top: 28px; }
+.controlButton { flex: 0 1 auto; }
+.countdown button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.demoControls {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 40px;
+}
+
+.error { margin: 24px auto 0; }
+.error p { color: var(--acid); margin-bottom: 16px; }
+@media (max-width: 600px) {
+  .timerWrapper {
+    padding: 28px clamp(8px, 3vw, 18px);
+    gap: clamp(6px, 1.5vw, 10px);
+  }
+  .timerBlock { min-width: clamp(52px, 17vw, 90px); }
+  .timerValue { font-size: clamp(40px, 11vw, 64px); }
+  .timerSeparator { font-size: clamp(28px, 8vw, 48px); }
+  .timerLabel { font-size: 14px; letter-spacing: 0.1em; }
+  .demoControls { gap: 12px; margin-top: 32px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .timerValue::before,
+  .timerValue::after,
+  .timerSeparator { animation: none; }
 }

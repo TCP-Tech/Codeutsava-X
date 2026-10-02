@@ -28,8 +28,10 @@ jobs:
       - name: Install Dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Build Next.js
-        run: pnpm run build
+      - name: Validate and Build Release
+        env:
+          NEXT_PUBLIC_SITE_URL: https://codeutsava.nitrr.ac.in
+        run: pnpm check
 
       - name: Copy Files to Server via rsync
         uses: appleboy/scp-action@v0.1.7
