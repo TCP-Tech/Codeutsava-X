@@ -18,7 +18,9 @@ const configuredSiteUrl = (
     process.env.NEXT_PUBLIC_SITE_URL ?? deploymentSiteUrl
 )?.replace(/\/$/, "");
 
-export const siteUrl = configuredSiteUrl ?? "http://localhost:3000";
+export const siteUrl = configuredSiteUrl ?? (process.env.NODE_ENV === "production"
+    ? "https://codeutsava.nitrr.ac.in"
+    : "http://localhost:3000");
 
 export const primaryNavigation = [
     { label: "About", href: "/#about" },

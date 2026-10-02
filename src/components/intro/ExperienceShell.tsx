@@ -28,6 +28,8 @@ export function ExperienceShell({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     const skipIntro =
+      window.location.pathname === "/timer" ||
+      window.location.pathname.startsWith("/launch-") ||
       !!window.location.hash ||
       document.documentElement.dataset.heroReturn === "true";
     skipIntroRef.current = skipIntro;

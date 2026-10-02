@@ -4,16 +4,20 @@
   "private": true,
   "packageManager": "pnpm@11.22.0",
   "engines": {
-    "node": ">=20.0.0"
+    "node": ">=22.18.0"
   },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "test": "next build && node --test tests/site.test.mjs",
+    "test": "pnpm test:countdown",
+    "test:countdown": "node --experimental-strip-types --test scripts/countdown.test.mjs",
+    "test:countdown:demo": "node --test scripts/countdown-demo.test.mjs",
+    "test:countdown:production": "node --test scripts/countdown-production.test.mjs",
+    "preview:production": "node scripts/preview-production.mjs",
     "lint": "eslint src",
     "typecheck": "next typegen && tsc --noEmit",
-    "check": "pnpm lint && pnpm typecheck && pnpm build"
+    "check": "pnpm lint && pnpm test && pnpm typecheck && pnpm build"
   },
   "dependencies": {
     "@emailjs/browser": "^4.4.1",

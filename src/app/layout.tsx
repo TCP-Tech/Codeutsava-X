@@ -3,8 +3,10 @@ import "./globals.css";
 import { SoundButton } from "@/components/ui/sound-button";
 import { CursorGlitch } from "@/components/layout/CursorGlitch";
 import { ExperienceShell } from "@/components/intro/ExperienceShell";
+import { siteUrl } from "@/data/site";
 
 export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
   title: {
     default: "Codeutsava X.0",
     template: "%s | Codeutsava X.0",
